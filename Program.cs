@@ -23,14 +23,16 @@ namespace ArrayManipulation
 
             long result = arrayManipulation(n, queries);
 
+            Console.WriteLine(result);
+
+            Console.ReadKey();
+
         }
 
         static long arrayManipulation(int n, List<List<int>> queries)
         {
-            long maxNumber = 0;
-            long sum = 0;
 
-            int[] orgList = new int[n + 1];
+            int[] orgList = new int[n + 2];
 
             //O(n*m)
             //int m = queries.Count;
@@ -46,8 +48,7 @@ namespace ArrayManipulation
 
             //}
 
-            //O(n)
-
+            //O(n) - this is better
             foreach (var query in queries)
             {
                 int a = query[0] - 1;
@@ -55,23 +56,24 @@ namespace ArrayManipulation
                 int k = query[2];
 
                 orgList[a] += k;
-
-                if (b + 1 < orgList.Count())
-                {
-                    orgList[b + 1] -= k;
-                }
+                orgList[b + 1] -= k;
             }
 
+            return findMax(orgList);
 
+        }
+
+        private static long findMax(int[] orgList)
+        {
+            long maxNumber = 0;
+            long sum = 0;
             for (int i = 0; i < orgList.Count() - 1; i++)
             {
                 sum += orgList[i];
                 if (sum > maxNumber) maxNumber = sum;
 
             }
-
             return maxNumber;
-
         }
     }
 }
