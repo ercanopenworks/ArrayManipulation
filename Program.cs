@@ -30,7 +30,7 @@ namespace ArrayManipulation
             long maxNumber = 0;
             long sum = 0;
 
-            int[] orgList = new int[n+1];
+            int[] orgList = new int[n + 1];
 
             //O(n*m)
             //int m = queries.Count;
@@ -51,10 +51,11 @@ namespace ArrayManipulation
             foreach (var query in queries)
             {
                 int a = query[0] - 1;
-                int b = query[1] -1;
+                int b = query[1] - 1;
                 int k = query[2];
 
                 orgList[a] += k;
+
                 if (b + 1 < orgList.Count())
                 {
                     orgList[b + 1] -= k;
@@ -62,7 +63,7 @@ namespace ArrayManipulation
             }
 
 
-            for (int i = 0; i < orgList.Count()-1; i++)
+            for (int i = 0; i < orgList.Count() - 1; i++)
             {
                 sum += orgList[i];
                 if (sum > maxNumber) maxNumber = sum;
@@ -70,7 +71,7 @@ namespace ArrayManipulation
             }
 
             return maxNumber;
-            
+
         }
     }
 }
